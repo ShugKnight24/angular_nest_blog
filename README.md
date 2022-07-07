@@ -13,6 +13,7 @@ Run with `npm run start:dev`
 - [ ] Test changes
   - Add updated Postman collection
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
+- [ ] Improve CRUD Endpoint error handling
 - [ ] Fix bcrypt import error / eslint error
 - [ ] Angular Frontend
 
@@ -37,7 +38,9 @@ You can use Postman or a similar app to test the endpoint by using different met
   ``` json
   {
     "name": "Shugmi Test",
-    "username": "shugknight24"
+    "username": "shugknight24",
+    "email": "test@test.com",
+    "password": "testPass123!"
   }
   ```
 
@@ -51,6 +54,8 @@ Example:
   {
     "name": "Shugmi Test Updated",
     "username": "shugknight"
+    "email": "should not work",
+    "password": "should not work"
   }
   ```
 
