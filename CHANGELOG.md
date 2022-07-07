@@ -2,6 +2,8 @@
 
 Notable changes to this project will be documented in this file
 
+- [X] Fixed login endpoint, update postman collection, and clarify documentation - 7/7/22
+- [X] Updated Documentation & Postman collection - 7/6/22
 - [X] Fixed PUT update endpoint not working due to params being wrong - 7/6/22
 - [X] Update bcrypt import causing password error - 7/6/22
 - [X] Add in User Authentication using JWT and password hashing using bcrypt - 6/30/22
