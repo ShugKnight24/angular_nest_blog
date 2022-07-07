@@ -7,8 +7,8 @@ import {
   Post,
   Put
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.interface';
+import { catchError, Observable, of, map } from 'rxjs';
+import { LoginError, LoginSuccess, User } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
 // controller name becomes the endpoint location
@@ -18,8 +18,20 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post()
-  create(@Body() user: User): Observable<User> {
-    return this.userService.create(user);
+  create(@Body() user: User): Observable<User | LoginError> {
+    return this.userService.create(user).pipe(
+      map((user: User) => user),
+      catchError((error) => of({ error: error.message }))
+    );
+  }
+
+  @Post('login')
+  login(@Body() user: User): Observable<LoginSuccess | string> {
+    return this.userService.login(user).pipe(
+      map((jwt: string) => {
+        return { access_token: jwt };
+      })
+    );
   }
 
   @Get(':id')
@@ -37,7 +49,7 @@ export class UserController {
     return this.userService.deleteOne(Number(id));
   }
 
-  @Put('id')
+  @Put(':id')
   updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
     return this.userService.updateOne(Number(id), user);
   }

@@ -10,6 +10,11 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Test changes
+  - Add updated Postman collection
+- [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
+- [ ] Improve CRUD Endpoint error handling
+- [ ] Fix bcrypt import error / eslint error
 - [ ] Angular Frontend
 
 ## Change Log
@@ -33,7 +38,9 @@ You can use Postman or a similar app to test the endpoint by using different met
   ``` json
   {
     "name": "Shugmi Test",
-    "username": "shugknight24"
+    "username": "shugknight24",
+    "email": "test@test.com",
+    "password": "testPass123!"
   }
   ```
 
@@ -47,6 +54,8 @@ Example:
   {
     "name": "Shugmi Test Updated",
     "username": "shugknight"
+    "email": "should not work",
+    "password": "should not work"
   }
   ```
 
