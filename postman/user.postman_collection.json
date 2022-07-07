@@ -41,6 +41,34 @@
 					"response": []
 				},
 				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@test2.com\",\n    \"password\": \"SimplePass12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get One User",
 					"request": {
 						"method": "GET",
@@ -66,7 +94,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Shugmi Test 2\",\n    \"username\": \"shug\",\n    \"email\": \"test@test1.com\",\n    \"password\": \"SimplePass\"\n}",
+							"raw": "{\n    \"name\": \"Shugmi Login Test\",\n    \"username\": \"shugknit\",\n    \"email\": \"test@test2.com\",\n    \"password\": \"SimplePass12\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

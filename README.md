@@ -10,8 +10,6 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
-- [ ] Test changes
-  - Add updated Postman collection
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
 - [ ] Improve CRUD Endpoint error handling
 - [ ] Fix bcrypt import error / eslint error
@@ -26,15 +24,17 @@ cd into the `api/src` directory and run the `npm run start:dev` command this wil
 
 You can use Postman or a similar app to test the endpoint by using different methods
 
-### Users Endpoint
+## Users Endpoint
 
   Postman collection added in the `postman` directory
 
-  url `localhost:3000/users/`
-  #### Create
+  Base URL: `localhost:3000/users/`
+  ### Create
   Post request - Pass a name and username as raw body via JSON
 
-  Example:
+  Target: Base URL
+  Method: POST
+  Example request body:
   ``` json
   {
     "name": "Shugmi Test",
@@ -44,20 +44,59 @@ You can use Postman or a similar app to test the endpoint by using different met
   }
   ```
 
-  #### Read
+  ### Read
   Get Request - Pass no params to get all the users, pass the specific user id to return a single user
 
-  #### Update
-  Put Request - Pass in user id and then pass in the updated user object
-Example:
+  #### Get All Users
+  Target: Base URL
+  Method: GET
+  Example request body: none
+
+  #### Get One User
+  Target: Base URL/:id
+  Method: GET
+  Example request body
+  ``` json
+  {
+    "id": "1"
+  }
+  ```
+
+  ### Update
+  Put Request - Pass in user id and then pass in the updated user object. The email and password fields will not be updated due to the fact they are deleted in the `updateOne` method inside of the user service
+
+  Target: Base URL/:id
+  Method: PUT
+  Example request body
   ``` json
   {
     "name": "Shugmi Test Updated",
     "username": "shugknight"
-    "email": "should not work",
-    "password": "should not work"
+    "email": "will not work",
+    "password": "will not work"
   }
   ```
 
-  #### Delete
+  ### Delete
   Delete Request - Pass a specific user's ID to delete a user
+
+  Target: Base URL/:id
+  Method: DELETE
+  Example request body
+  ``` json
+  {
+    "id": "1"
+  }
+  ```
+
+  ### Login
+  Post Request - Pass a username and password as raw body via JSON to get a JWT token back. Can check the contents of that token at [jwt.io](https://jwt.io/)
+
+  Target: Base URL/login
+  Method: POST
+  Example request body
+  ``` json
+  {
+    "id": "1"
+  }
+  ```
