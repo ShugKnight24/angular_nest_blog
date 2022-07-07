@@ -1,8 +1,11 @@
-import bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { from, Observable, of } from 'rxjs';
 import { User } from 'src/user/models/user.interface';
+
+// TODO: // Remove the below error from eslint or update import
+// eslint@typescript-eslint/no-var-requires
+const bcrypt = require('bcrypt');
 
 @Injectable()
 export class AuthService {

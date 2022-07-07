@@ -13,6 +13,7 @@ Run with `npm run start:dev`
 - [ ] Test changes
   - Add updated Postman collection
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
+- [ ] Fix bcrypt import error / eslint error
 - [ ] Angular Frontend
 
 ## Change Log
