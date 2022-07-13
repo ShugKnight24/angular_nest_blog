@@ -124,6 +124,7 @@ You can use Postman or a similar app to test the endpoint by using different met
   Example request body
   ``` json
   {
-    "id": "1"
+    "email": "user email",
+    "password": "user password",
   }
   ```
