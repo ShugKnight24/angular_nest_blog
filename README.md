@@ -10,6 +10,7 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Improve security around endpoints... only admins or the current user can update info of the current user
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
 - [ ] Improve CRUD Endpoint error handling
 - [ ] Fix bcrypt import error / eslint error
@@ -49,7 +50,9 @@ You can use Postman or a similar app to test the endpoint by using different met
 
   #### Get All Users
   Target: Base URL
+  Required role: 'admin'
   Method: GET
+  Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
   Example request body: none
 
   #### Get One User
@@ -77,6 +80,18 @@ You can use Postman or a similar app to test the endpoint by using different met
   }
   ```
 
+  ### Update User Role
+  Target: Base URL/:id/role
+  Required role: 'admin'
+  Method: PUT
+  Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
+
+  Example request body
+  ``` json
+  {
+    "role": "admin" | "editor" | "publisher" | "user" (default)
+  }
+  ```
   ### Delete
   Delete Request - Pass a specific user's ID to delete a user
 

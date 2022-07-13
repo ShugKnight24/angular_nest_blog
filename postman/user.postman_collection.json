@@ -15,6 +15,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo2LCJuYW1lIjoiU2h1Z21pIHJvbGUgVGVzdCAyIiwidXNlcm5hbWUiOiJzaHVnUm9sZTEiLCJlbWFpbCI6InRlc3RAdGVzdDQuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY1NzczNzYxOSwiZXhwIjoxNjU3NzQ3NjE5fQ.0tnJW-twXcez2iCfN6cnfvxcRR-UWq__uXjGfB2aLQo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -47,7 +57,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@test2.com\",\n    \"password\": \"SimplePass12\"\n}",
+							"raw": "{\n    \"email\": \"test@test4.com\",\n    \"password\": \"SimplePass123!\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,14 +84,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/users/2",
+							"raw": "localhost:3000/users/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"users",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -94,7 +104,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Shugmi Login Test\",\n    \"username\": \"shugknit\",\n    \"email\": \"test@test2.com\",\n    \"password\": \"SimplePass12\"\n}",
+							"raw": "{\n    \"name\": \"Shugmi role Test 2\",\n    \"username\": \"shugRole1\",\n    \"email\": \"test@test4.com\",\n    \"password\": \"SimplePass123!\",\n    \"role\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,6 +167,45 @@
 							"path": [
 								"users",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo2LCJuYW1lIjoiU2h1Z21pIHJvbGUgVGVzdCAyIiwidXNlcm5hbWUiOiJzaHVnUm9sZTEiLCJlbWFpbCI6InRlc3RAdGVzdDQuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY1NzczNzYxOSwiZXhwIjoxNjU3NzQ3NjE5fQ.0tnJW-twXcez2iCfN6cnfvxcRR-UWq__uXjGfB2aLQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\": \"editor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/3/role",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"3",
+								"role"
 							]
 						}
 					},
