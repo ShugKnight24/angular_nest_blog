@@ -5,10 +5,19 @@ import {
   Get,
   Param,
   Post,
-  Put
+  Put,
+  UseGuards
 } from '@nestjs/common';
 import { catchError, Observable, of, map } from 'rxjs';
-import { LoginError, LoginSuccess, User } from '../models/user.interface';
+import { hasRoles } from 'src/auth/decorators/roles.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import {
+  LoginError,
+  LoginSuccess,
+  User,
+  UserRole
+} from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
 // controller name becomes the endpoint location
@@ -39,6 +48,8 @@ export class UserController {
     return this.userService.findOne(params.id);
   }
 
+  @hasRoles(UserRole.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   findAll(): Observable<User[]> {
     return this.userService.findAll();
@@ -49,8 +60,21 @@ export class UserController {
     return this.userService.deleteOne(Number(id));
   }
 
+  // TODO: // Ensure current user is the one updating...
+  // Allow admins to update any user as well
   @Put(':id')
   updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
     return this.userService.updateOne(Number(id), user);
+  }
+
+  @hasRoles(UserRole.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Put(':id/role')
+  updateUserRole(
+    @Param('id')
+    id: string,
+    @Body() user: User
+  ): Observable<User> {
+    return this.userService.updateUserRole(Number(id), user);
   }
 }
