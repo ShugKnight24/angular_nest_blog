@@ -52,8 +52,18 @@ You can use Postman or a similar app to test the endpoint by using different met
   Target: Base URL
   Required role: 'admin'
   Method: GET
+
   Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
-  Example request body: none
+
+  Example request body: none or can pass in pagination params to get a specific page of users. The limit can be set in the `.env` file. Look at `example.env` under the `USER_PAGINATION_LIMIT` string. This will also return a links object that has urls to `first`, `previous`, `next`, and `last` pages
+
+  ``` json
+  {
+    "page": 1,
+    "limit": 10,
+    "route": "http://localhost:3000/users"
+  }
+  ```
 
   #### Get One User
   Target: Base URL/:id
@@ -74,7 +84,7 @@ You can use Postman or a similar app to test the endpoint by using different met
   ``` json
   {
     "name": "Shugmi Test Updated",
-    "username": "shugknight"
+    "username": "shugknight",
     "email": "will not work",
     "password": "will not work"
   }
