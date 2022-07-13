@@ -41,7 +41,8 @@ You can use Postman or a similar app to test the endpoint by using different met
     "name": "Shugmi Test",
     "username": "shugknight24",
     "email": "test@test.com",
-    "password": "testPass123!"
+    "password": "testPass123!",
+    "role": "will not work - defaults to user"
   }
   ```
 
@@ -86,7 +87,8 @@ You can use Postman or a similar app to test the endpoint by using different met
     "name": "Shugmi Test Updated",
     "username": "shugknight",
     "email": "will not work",
-    "password": "will not work"
+    "password": "will not work",
+    "role": "will not work"
   }
   ```
 
