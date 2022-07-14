@@ -2,6 +2,8 @@
 
 Notable changes to this project will be documented in this file
 
+- [X] Prevent users from setting or updating their own roles - 7/13/22
+- [X] Add pagination to the users get all endpoint - 7/13/22
 - [X] Add a update user role endpoint & add guards - 7/13/22
 - [X] Add guards to get all users endpoint - 7/13/22
 - [X] Initial implementation of user roles and guards - 7/13/22
