@@ -10,6 +10,7 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Improve security around endpoints... only admins or the current user can update info of the current user
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
 - [ ] Improve CRUD Endpoint error handling
 - [ ] Fix bcrypt import error / eslint error
@@ -40,7 +41,8 @@ You can use Postman or a similar app to test the endpoint by using different met
     "name": "Shugmi Test",
     "username": "shugknight24",
     "email": "test@test.com",
-    "password": "testPass123!"
+    "password": "testPass123!",
+    "role": "will not work - defaults to user"
   }
   ```
 
@@ -49,8 +51,20 @@ You can use Postman or a similar app to test the endpoint by using different met
 
   #### Get All Users
   Target: Base URL
+  Required role: 'admin'
   Method: GET
-  Example request body: none
+
+  Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
+
+  Example request body: none or can pass in pagination params to get a specific page of users. The limit can be set in the `.env` file. Look at `example.env` under the `USER_PAGINATION_LIMIT` string. This will also return a links object that has urls to `first`, `previous`, `next`, and `last` pages
+
+  ``` json
+  {
+    "page": 1,
+    "limit": 10,
+    "route": "http://localhost:3000/users"
+  }
+  ```
 
   #### Get One User
   Target: Base URL/:id
@@ -71,12 +85,25 @@ You can use Postman or a similar app to test the endpoint by using different met
   ``` json
   {
     "name": "Shugmi Test Updated",
-    "username": "shugknight"
+    "username": "shugknight",
     "email": "will not work",
-    "password": "will not work"
+    "password": "will not work",
+    "role": "will not work"
   }
   ```
 
+  ### Update User Role
+  Target: Base URL/:id/role
+  Required role: 'admin'
+  Method: PUT
+  Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
+
+  Example request body
+  ``` json
+  {
+    "role": "admin" | "editor" | "publisher" | "user" (default)
+  }
+  ```
   ### Delete
   Delete Request - Pass a specific user's ID to delete a user
 
@@ -97,6 +124,7 @@ You can use Postman or a similar app to test the endpoint by using different met
   Example request body
   ``` json
   {
-    "id": "1"
+    "email": "user email",
+    "password": "user password",
   }
   ```
