@@ -1,0 +1,16 @@
+.register-container {
+  background-color: orange;
+
+  h1 {
+    text-align: center;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+  }
+}

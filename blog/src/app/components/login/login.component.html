@@ -1,2 +1,44 @@
-<p>login component works!</p>
-<button mat-raised-button (click)="login()">Login</button>
+<div class="login-container">
+  <h1>Login</h1>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="form-container">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          type="email"
+        />
+        <mat-hint>
+          <span *ngIf="loginForm.controls['email'].errors">
+            Email is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          type="password"
+        />
+        <mat-hint>
+          <span *ngIf="loginForm.controls['password'].errors">
+            Password is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!loginForm.valid"
+        type="submit"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

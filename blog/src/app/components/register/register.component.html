@@ -1,1 +1,84 @@
-<p>register component works!</p>
+<div class="register-container">
+  <h1>Register</h1>
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div class="form-container">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Full Name"
+          formControlName="name"
+          type="text"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['name'].errors">
+            Name is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Username"
+          formControlName="username"
+          type="text"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['username'].errors">
+            Username is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          type="email"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['email'].errors">
+            Email is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          type="password"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['password'].errors">
+            Password is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Confirm Your Password"
+          formControlName="passwordConfirmation"
+          type="password"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['passwordConfirmation'].errors">
+            Password confirmation is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!registerForm.valid"
+        type="submit"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
