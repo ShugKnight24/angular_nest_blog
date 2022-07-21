@@ -2,6 +2,9 @@
 
 Notable changes to this project will be documented in this file
 
+- [X] Add custom validators to Register Form - 7/21/22
+- [X] Add Login & Register Forms - 7/20/22
+- [X] Add Angular Frontend & Connect to Nest - 7/15/22
 - [X] Prevent users from setting or updating their own roles - 7/13/22
 - [X] Add pagination to the users get all endpoint - 7/13/22
 - [X] Add a update user role endpoint & add guards - 7/13/22

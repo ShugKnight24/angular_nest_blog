@@ -10,6 +10,14 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Research Input autocomplete
+- [ ] Improve material form styles on white background
+- [ ] Improve custom errors in login & register forms
+- [ ] Add a section for running angular
+- [ ] Move endpoint docs to a separate file
+- [ ] Use concurrently for running angular and nest simultaneously
+- [ ] Add Swagger Page
+- [ ] Add DAOs and DTOs
 - [ ] Improve security around endpoints... only admins or the current user can update info of the current user
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
 - [ ] Improve CRUD Endpoint error handling
