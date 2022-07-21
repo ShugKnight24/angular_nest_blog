@@ -66,8 +66,8 @@
           type="password"
         />
         <mat-hint>
-          <span *ngIf="registerForm.controls['passwordConfirmation'].errors">
-            Password confirmation is required
+          <span *ngIf="registerForm.hasError('passwordsDontMatch')">
+            Passwords don't match
           </span>
         </mat-hint>
       </mat-form-field>
@@ -81,4 +81,38 @@
       </button>
     </div>
   </form>
+  <div
+    class="error-container"
+    *ngIf="registerForm.invalid"
+  >
+    <h2>This form contains errors</h2>
+    <h2>Password Errors:</h2>
+    <ul>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordLength')"
+      >
+        Password must be at least 3 characters long
+      </li>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordDoesntContainNumber')"
+      >
+        Password doesn't contain a number
+      </li>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordDoesntContainSpecialCharacter')"
+      >
+        Password doesn't contain a special character
+      </li>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordDoesntContainUppercase')"
+      >
+        Password doesn't contain an uppercase letter
+      </li>
+      <li
+        *ngIf="registerForm.hasError('passwordsDontMatch')"
+      >
+        Passwords don't match
+      </li>
+    </ul>
+  </div>
 </div>

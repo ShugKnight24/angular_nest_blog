@@ -1,8 +1,89 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/internal/operators/map';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+
+class CustomValidators {
+  static passwordContainsNumber(
+    control: AbstractControl
+  ): ValidationErrors | void {
+    const password = control.value;
+    const numberRegex = /[0-9]/;
+
+    if (numberRegex.test(password)) {
+      return;
+    } else {
+      return {
+        passwordDoesntContainNumber: true
+      }
+    }
+  }
+
+  static passwordContainsSpecialCharacter(
+    control: AbstractControl
+  ): ValidationErrors | void {
+    const password = control.value;
+    const specialCharacterRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+    if (specialCharacterRegex.test(password)) {
+      return;
+    } else {
+      return {
+        passwordDoesntContainSpecialCharacter: true
+      }
+    }
+  }
+
+  static passwordContainsUppercase(
+    control: AbstractControl
+  ): ValidationErrors | void {
+    const password = control.value;
+    const uppercaseRegex = /[A-Z]/;
+
+    if (uppercaseRegex.test(password)) {
+      return;
+    } else {
+      return {
+        passwordDoesntContainUppercase: true
+      };
+    }
+  }
+
+  static passwordLength(
+    control: AbstractControl
+  ) : ValidationErrors | void {
+    const password = control.value;
+
+    if (password !== null && password.length >= 3) {
+      return;
+    } else {
+      return { passwordLength: true };
+    }
+  }
+
+  static passwordMatch(
+    control: AbstractControl
+  ): ValidationErrors | void {
+    const password = control.get('password')?.value;
+    const passwordConfirmation = control.get('passwordConfirmation')?.value;
+
+    if (
+      (password !== null && passwordConfirmation !== null) &&
+      password === passwordConfirmation
+    ) {
+      return;
+    } else {
+      return { passwordsDontMatch: true };
+    }
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -30,9 +111,14 @@ export class RegisterComponent implements OnInit {
       ]],
       password: [null, [
         Validators.required,
-        Validators.minLength(3)
+        CustomValidators.passwordContainsNumber,
+        CustomValidators.passwordContainsSpecialCharacter,
+        CustomValidators.passwordContainsUppercase,
+        CustomValidators.passwordLength
       ]],
       passwordConfirmation: [null, [Validators.required]]
+    }, {
+      validator: CustomValidators.passwordMatch
     });
   }
 
