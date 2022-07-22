@@ -9,15 +9,15 @@ import {
 import { Router } from '@angular/router';
 import { map } from 'rxjs/internal/operators/map';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import StringUtils from 'src/app/utils/string.utils';
 
 class CustomValidators {
   static passwordContainsNumber(
     control: AbstractControl
   ): ValidationErrors | void {
     const password = control.value;
-    const numberRegex = /[0-9]/;
 
-    if (numberRegex.test(password)) {
+    if (StringUtils.stringContainsNumber(password)) {
       return;
     } else {
       return {
@@ -30,9 +30,8 @@ class CustomValidators {
     control: AbstractControl
   ): ValidationErrors | void {
     const password = control.value;
-    const specialCharacterRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 
-    if (specialCharacterRegex.test(password)) {
+    if (StringUtils.stringContainsSpecialCharacter(password)) {
       return;
     } else {
       return {
@@ -45,9 +44,8 @@ class CustomValidators {
     control: AbstractControl
   ): ValidationErrors | void {
     const password = control.value;
-    const uppercaseRegex = /[A-Z]/;
 
-    if (uppercaseRegex.test(password)) {
+    if (StringUtils.stringContainsUppercase(password)) {
       return;
     } else {
       return {
