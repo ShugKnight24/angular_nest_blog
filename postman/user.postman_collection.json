@@ -20,7 +20,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo2LCJuYW1lIjoiU2h1Z21pIHJvbGUgVGVzdCAyIiwidXNlcm5hbWUiOiJzaHVnUm9sZTEiLCJlbWFpbCI6InRlc3RAdGVzdDQuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY1NzczNzYxOSwiZXhwIjoxNjU3NzQ3NjE5fQ.0tnJW-twXcez2iCfN6cnfvxcRR-UWq__uXjGfB2aLQo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo2LCJuYW1lIjoiU2h1Z21pIHJvbGUgVGVzdCAyIiwidXNlcm5hbWUiOiJzaHVnUm9sZTEiLCJlbWFpbCI6InRlc3RAdGVzdDQuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY1ODM0NDk5NCwiZXhwIjoxNjU4MzU0OTk0fQ.ZKAO8VvyOHj6d8lZ53VedvDlZTfeK1fqd9VUunZDv7g",
 									"type": "string"
 								}
 							]
@@ -37,12 +37,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users/",
+							"raw": "localhost:3000/api/users/",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								""
 							]
@@ -65,12 +66,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users/login",
+							"raw": "localhost:3000/api/users/login",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								"login"
 							]
@@ -84,12 +86,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/users/3",
+							"raw": "localhost:3000/api/users/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								"3"
 							]
@@ -112,12 +115,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users/",
+							"raw": "localhost:3000/api/users/",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								""
 							]
@@ -131,12 +135,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/users/2",
+							"raw": "localhost:3000/api/users/2",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								"2"
 							]
@@ -159,12 +164,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users/3",
+							"raw": "localhost:3000/api/users/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								"3"
 							]
@@ -197,12 +203,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/users/3/role",
+							"raw": "localhost:3000/api/users/3/role",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								"3",
 								"role"
