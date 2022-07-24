@@ -2,6 +2,12 @@
 
 Notable changes to this project will be documented in this file
 
+- [X] Display all Users if user is an Admin
+  - Fix how local storage token was set
+- [X] Refactor Frontend UI - 7/23/22
+  - Use SCSS Themeing
+- [X] Refactor Custom Validators - 7/22/22
+  - Abstract String Utils
 - [X] Add custom validators to Register Form - 7/21/22
 - [X] Add Login & Register Forms - 7/20/22
 - [X] Add Angular Frontend & Connect to Nest - 7/15/22

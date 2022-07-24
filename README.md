@@ -10,8 +10,13 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Only display `Users` and `Admin` routes if user has the admin role
+- [ ] Improve use of SCSS themeing
+  - Add a dark mode
+  - Figure out if passing theme to mixin to style components is the best way to do this
+- [ ] Refactor services by utilizing Subjects and unsubscribing from Observables
+- [ ] Refactor project structure
 - [ ] Research Input autocomplete
-- [ ] Improve material form styles on white background
 - [ ] Improve custom errors in login & register forms
 - [ ] Add a section for running angular
 - [ ] Move endpoint docs to a separate file
@@ -22,7 +27,6 @@ Run with `npm run start:dev`
 - [ ] Update documentation to illustrate changes to login flow... illustrate need to delete DB / old records if having issues connecting to DB
 - [ ] Improve CRUD Endpoint error handling
 - [ ] Fix bcrypt import error / eslint error
-- [ ] Angular Frontend
 
 ## Change Log
 - Follow all changes made in the [Changelog](./CHANGELOG.md)
