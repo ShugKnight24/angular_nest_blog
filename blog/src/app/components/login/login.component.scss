@@ -1,16 +1,28 @@
-.login-container {
-  background-color: blue;
+@use 'sass:map';
+@use '@angular/material' as mat;
 
-  h1 {
-    text-align: center;
-  }
+@mixin login-page-styles($theme) {
+  .login-container {
+    $config: mat.get-color-config($theme);
+    $primary: map.get($config, 'primary');
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 20px 0;
+    h1 {
+      text-align: center;
+      color: mat.get-color-from-palette($primary);
+      font-weight: bold;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 20px 0;
+
+      mat-form-field {
+        width: 80%;
+      }
+    }
   }
 }
