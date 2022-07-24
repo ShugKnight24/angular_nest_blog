@@ -1,0 +1,56 @@
+<div
+  class="users-container"
+>
+  <h1>All Users</h1>
+  <div
+    class="users-table"
+    *ngIf="usersData"
+  >
+    <mat-table
+      [dataSource]="usersData.items"
+    >
+      <mat-header-row *matHeaderRowDef="columsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columsToDisplay"></mat-row>
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.username}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.role}}</mat-cell>
+      </ng-container>
+    </mat-table>
+    <mat-paginator
+      [length]="usersData.meta.totalItems"
+      [pageSize]="usersData.meta.itemsPerPage"
+      [pageSizeOptions]="[5, 10, 20, 25, 50, 100]"
+      (page)="pageEvent = $event; onPageChange($event)"
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
+
+  <div *ngIf="!usersData">
+    <ul>
+      <li>Ensure you have the correct access to see this page</li>
+      <li>If you believe you're seeing this message in error, please contact the system administrator</li>
+    </ul>
+  </div>
+</div>

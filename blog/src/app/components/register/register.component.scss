@@ -1,26 +1,38 @@
-.register-container {
-  background-color: orange;
+@use 'sass:map';
+@use '@angular/material' as mat;
 
-  h1 {
-    text-align: center;
-    margin: 0;
-    padding: 15px 0;
-  }
+@mixin register-page-styles($theme) {
+  $config: mat.get-color-config($theme);
+  $primary: map.get($config, 'primary');
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 20px 0;
-  }
+  .register-container {
+    h1 {
+      color: mat.get-color-from-palette($primary);
+      text-align: center;
+      margin: 0;
+      padding: 15px 0;
+      font-weight: bold;
+    }
 
-  .error-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 0;
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 20px 0;
+
+      mat-form-field {
+        width: 80%;
+      }
+    }
+
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 0;
+    }
   }
 }

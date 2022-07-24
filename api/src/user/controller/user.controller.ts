@@ -65,7 +65,7 @@ export class UserController {
       page: Number(page),
       limit: Number(limit),
       // TOOD: // add ability for env to be imported in from config file
-      route: 'http://localhost:3000/users'
+      route: 'http://localhost:3000/api/users'
     });
   }
 
