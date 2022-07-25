@@ -55,18 +55,33 @@ export class UserController {
   @Get()
   findAll(
     @Query('page') page = 1,
-    @Query('limit') limit = Number(process.env.USER_PAGINATION_LIMIT)
+    @Query('limit') limit = Number(process.env.USER_PAGINATION_LIMIT),
+    @Query('username') username?: string
   ): Observable<Pagination<User>> {
+    // TODO - better way to implement
+    // returns too many users when searching for a username
     limit =
       limit > Number(process.env.USER_PAGINATION_LIMIT)
         ? Number(process.env.USER_PAGINATION_LIMIT)
-        : limit;
-    return this.userService.paginateUsers({
-      page: Number(page),
-      limit: Number(limit),
-      // TOOD: // add ability for env to be imported in from config file
-      route: 'http://localhost:3000/api/users'
-    });
+        : Number(limit);
+
+    if (username === null || username === undefined) {
+      return this.userService.paginateUsers({
+        page: Number(page),
+        limit,
+        // TOOD: // add ability for env to be imported in from config file
+        route: 'http://localhost:3000/api/users'
+      });
+    } else {
+      return this.userService.paginateUsersByUsername(
+        {
+          page: Number(page),
+          limit,
+          route: 'http://localhost:3000/api/users'
+        },
+        { username }
+      );
+    }
   }
 
   @Delete(':id')

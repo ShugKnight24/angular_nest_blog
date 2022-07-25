@@ -3,6 +3,7 @@
 @use './app/app.component' as app;
 @use './app/components/login/login.component' as login;
 @use './app/components/register/register.component' as register;
+@use './app/components/users/users.component' as users;
 
 
 @include mat.core();
@@ -21,14 +22,16 @@ body {
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  max-width: 1440px;
 }
 
 @mixin custom-components-theme($theme) {
   @include app.toolbar-styles($theme);
   @include login.login-page-styles($theme);
   @include register.register-page-styles($theme);
+  @include users.users-page-styles($theme);
 }
 
 app-root {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { catchError, from, map, Observable, switchMap } from 'rxjs';
 import { AuthService } from 'src/auth/services/auth.service';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { UserEntity } from '../models/user.entity';
 import { User, UserRole } from '../models/user.interface';
 import {
@@ -76,6 +76,54 @@ export class UserService {
         usersPagination.items.forEach((user: User) => {
           delete user.password;
         });
+        return usersPagination;
+      })
+    );
+  }
+
+  paginateUsersByUsername(
+    options: IPaginationOptions,
+    user: User
+  ): Observable<Pagination<User>> {
+    const limit =
+      Number(options.limit) || Number(process.env.USER_PAGINATION_LIMIT);
+    const page = Number(options.page);
+    const route = options.route;
+    const username = user.username;
+    return from(
+      this.userRepository.findAndCount({
+        skip: page * limit || 0,
+        take: limit,
+        order: {
+          id: 'ASC'
+        },
+        select: ['id', 'name', 'username', 'email', 'role'],
+        where: [
+          {
+            username: Like(`%${username}%`)
+          }
+        ]
+      })
+    ).pipe(
+      map(([users, totalUsers]) => {
+        const usersPagination: Pagination<User> = {
+          items: users,
+          links: {
+            first: `${route}?limit=${limit}`,
+            previous: route,
+            next: `${route}?limit=${limit}&page=${page + 1}`,
+            last: `${route}?limit=${limit}&page=${Math.ceil(
+              totalUsers / limit
+            )}`
+          },
+          meta: {
+            currentPage: page,
+            itemCount: users.length,
+            itemsPerPage: limit,
+            totalItems: totalUsers,
+            totalPages: Math.ceil(totalUsers / limit)
+          }
+        };
         return usersPagination;
       })
     );
