@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin login-page-styles($theme) {
+  .login-container {
+    $config: mat.get-color-config($theme);
+    $primary: map.get($config, 'primary');
+
+    h1 {
+      text-align: center;
+      color: mat.get-color-from-palette($primary);
+      font-weight: bold;
+      padding: 15px 0;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 20px 0;
+
+      mat-form-field {
+        width: 80%;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<mat-toolbar
+  class="toolbar"
+  color="primary"
+>
+  <mat-toolbar-row>
+    <span>Blog Title</span>
+    <span class="spacer"></span>
+    <button
+      mat-flat-button
+      routerLink="/users"
+      routerLinkActive="active"
+    >
+      Users
+    </button>
+    <button
+      mat-flat-button
+      routerLink="/login"
+      routerLinkActive="active"
+    >
+      Login
+    </button>
+    <button
+      mat-flat-button
+      routerLink="/register"
+      routerLinkActive="active"
+    >
+      Register
+    </button>
+    <button
+      mat-flat-button
+      routerLink="/admin"
+      routerLinkActive="active"
+    >
+      Admin
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

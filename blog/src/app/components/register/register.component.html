@@ -1,0 +1,118 @@
+<div class="register-container">
+  <h1>Register</h1>
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div class="form-container">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Full Name"
+          formControlName="name"
+          type="text"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['name'].errors">
+            Name is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Username"
+          formControlName="username"
+          type="text"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['username'].errors">
+            Username is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          type="email"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['email'].errors">
+            Email is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          type="password"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.controls['password'].errors">
+            Password is required
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Confirm Your Password"
+          formControlName="passwordConfirmation"
+          type="password"
+        />
+        <mat-hint>
+          <span *ngIf="registerForm.hasError('passwordsDontMatch')">
+            Passwords don't match
+          </span>
+        </mat-hint>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!registerForm.valid"
+        type="submit"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+  <div
+    class="error-container"
+    *ngIf="registerForm.invalid"
+  >
+    <h2>This form contains errors</h2>
+    <h2>Password Errors:</h2>
+    <ul>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordLength')"
+      >
+        Password must be at least 3 characters long
+      </li>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordDoesntContainNumber')"
+      >
+        Password doesn't contain a number
+      </li>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordDoesntContainSpecialCharacter')"
+      >
+        Password doesn't contain a special character
+      </li>
+      <li
+        *ngIf="registerForm.get('password')?.hasError('passwordDoesntContainUppercase')"
+      >
+        Password doesn't contain an uppercase letter
+      </li>
+      <li
+        *ngIf="registerForm.hasError('passwordsDontMatch')"
+      >
+        Passwords don't match
+      </li>
+    </ul>
+  </div>
+</div>
