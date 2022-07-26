@@ -2,6 +2,7 @@
 
 Notable changes to this project will be documented in this file
 
+- [X] Fix searching by username
 - [X] Add ability to search by username on the users endpoint - 7/25/22
 - [X] Display all Users if user is an Admin - 7/24/22
   - Fix how local storage token was set
