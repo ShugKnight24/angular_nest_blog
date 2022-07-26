@@ -35,14 +35,18 @@ export class UsersComponent implements OnInit {
 
   initDataSource() {
     this.usersService.getAllUsers(
-      1,
+      0,
       Number(environment.USER_PAGINATION_LIMIT)
     ).pipe(
       map((usersData: UsersResponse) => this.usersData = usersData)
     ).subscribe();
   }
 
-  findByUsername(username: string) {
+  findByUsername() {
+    if (this.usernameSearchForm.invalid) { return; }
+    this.usernameToSearch = this.usernameSearchForm.get('usernameToSearch')?.value;
+    const username = this.usernameToSearch;
+
     this.usersService.searchByUsername(
       0,
       Number(environment.USER_PAGINATION_LIMIT),
@@ -62,7 +66,7 @@ export class UsersComponent implements OnInit {
       ).subscribe();
     } else {
       this.usersService.searchByUsername(
-        0,
+        pageEvent.pageIndex + 1,
         Number(environment.USER_PAGINATION_LIMIT),
         this.usernameToSearch
       ).pipe(

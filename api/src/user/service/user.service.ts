@@ -85,15 +85,15 @@ export class UserService {
     options: IPaginationOptions,
     user: User
   ): Observable<Pagination<User>> {
-    const limit =
-      Number(options.limit) || Number(process.env.USER_PAGINATION_LIMIT);
+    const limit = Number(options.limit);
     const page = Number(options.page);
     const route = options.route;
     const username = user.username;
+
     return from(
       this.userRepository.findAndCount({
         skip: page * limit || 0,
-        take: limit,
+        take: limit || 10,
         order: {
           id: 'ASC'
         },

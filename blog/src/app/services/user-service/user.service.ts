@@ -46,12 +46,13 @@ export class UserService {
     username?: string
   ): RequestOptions {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const params = new HttpParams();
-    params.append('limit', limit.toString());
-    params.append('page', page.toString());
+    let params = new HttpParams();
+
+    params = params.append('limit', limit.toString());
+    params = params.append('page', page.toString());
 
     if (username) {
-      params.append('username', username);
+      params = params.append('username', username);
     }
 
     const options = {
