@@ -10,6 +10,10 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Prevent duplicate emails from registering
+- [ ] Resolve why users page pagination is not working properly
+  - Improve implemention around `limit` which is the source of this issue
+  - Improve styles of paginator select not looking good over the page
 - [ ] Only display `Users` and `Admin` routes if user has the admin role
 - [ ] Improve use of SCSS themeing
   - Add a dark mode

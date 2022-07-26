@@ -1,7 +1,40 @@
 <div
-  class="users-container"
+  class="users-page-container"
 >
   <h1>All Users</h1>
+  <div class="user-search">
+    <form
+      [formGroup]="usernameSearchForm"
+      (ngSubmit)="findByUsername()"
+      novalidate
+    >
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>Search by Username</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="usernameToSearch"
+            placeholder="Search Username"
+          >
+          <mat-hint>
+            <span *ngIf="usernameSearchForm.controls['usernameToSearch'].errors">
+              Username is required
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!usernameSearchForm.valid"
+          type="submit"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+
   <div
     class="users-table"
     *ngIf="usersData"
@@ -9,8 +42,8 @@
     <mat-table
       [dataSource]="usersData.items"
     >
-      <mat-header-row *matHeaderRowDef="columsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columsToDisplay"></mat-row>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
 
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
@@ -43,7 +76,8 @@
       [pageSize]="usersData.meta.itemsPerPage"
       [pageSizeOptions]="[5, 10, 20, 25, 50, 100]"
       (page)="pageEvent = $event; onPageChange($event)"
-      showFirstLastButtons>
+      showFirstLastButtons
+    >
     </mat-paginator>
   </div>
 
