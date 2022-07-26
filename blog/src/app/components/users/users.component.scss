@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
-@mixin login-page-styles($theme) {
-  .login-container {
+@mixin users-page-styles($theme) {
+  .users-page-container {
     $config: mat.get-color-config($theme);
     $primary: map.get($config, 'primary');
 
@@ -13,16 +13,27 @@
       padding: 15px 0;
     }
 
-    .form-container {
+    .user-search {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding: 20px 0;
+      padding: 0 0 20px;
 
-      mat-form-field {
-        width: 80%;
+      form {
+        width: 100%;
+
+        .form-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          mat-form-field {
+            width: 80%;
+          }
+        }
       }
     }
   }

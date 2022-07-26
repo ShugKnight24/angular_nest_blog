@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+interface JWTToken {
+  access_token: string;
+}
+
 interface LoginForm {
   email: string;
   password: string;
 };
 
-interface User {
+export interface User {
+  id?: number;
   name?: string;
   username?: string;
   email?: string;
   password?: string;
   passwordConfirmation?: string;
+  role?: string;
 };
 
 @Injectable({
@@ -27,9 +33,9 @@ export class AuthenticationService {
       email: loginForm.email,
       password: loginForm.password
     }).pipe(
-      map((jwtToken: string) => {
+      map((jwtToken: JWTToken) => {
         if (jwtToken) {
-          localStorage.setItem('blog_jwt_token', jwtToken);
+          localStorage.setItem('blog_jwt_token', jwtToken.access_token);
           return jwtToken;
         }
         return;

@@ -1,6 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@use 'theme' as theme;
+@use './app/app.component' as app;
+@use './app/components/login/login.component' as login;
+@use './app/components/register/register.component' as register;
+@use './app/components/users/users.component' as users;
 
-* {
+
+@include mat.core();
+
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -12,6 +22,19 @@ body {
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  max-width: 1440px;
+}
+
+@mixin custom-components-theme($theme) {
+  @include app.toolbar-styles($theme);
+  @include login.login-page-styles($theme);
+  @include register.register-page-styles($theme);
+  @include users.users-page-styles($theme);
+}
+
+app-root {
+  @include mat.all-component-themes(theme.$theme);
+  @include custom-components-theme(theme.$theme)
 }
