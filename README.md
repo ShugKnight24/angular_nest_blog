@@ -10,6 +10,14 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
+- [ ] Add a section for running cypress
+- [ ] Add a section for running angular
+- [ ] Add reporting with Mocha/Chai
+- [ ] Figure out how to automate Register form w/ Cypress
+  - How to create / randomize a username and email
+  - Tests for all fields
+  - Pass all password checks
+  - Submit form
 - [ ] Prevent duplicate emails from registering
 - [ ] Resolve why users page pagination is not working properly
   - Improve implemention around `limit` which is the source of this issue
@@ -22,7 +30,6 @@ Run with `npm run start:dev`
 - [ ] Refactor project structure
 - [ ] Research Input autocomplete
 - [ ] Improve custom errors in login & register forms
-- [ ] Add a section for running angular
 - [ ] Move endpoint docs to a separate file
 - [ ] Use concurrently for running angular and nest simultaneously
 - [ ] Add Swagger Page

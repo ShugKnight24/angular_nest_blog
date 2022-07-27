@@ -2,7 +2,8 @@
 
 Notable changes to this project will be documented in this file
 
-- [X] Fix searching by username
+- [X] Add Cypress to project - 7/27/22
+- [X] Fix searching by username - 7/26/22
 - [X] Add ability to search by username on the users endpoint - 7/25/22
 - [X] Display all Users if user is an Admin - 7/24/22
   - Fix how local storage token was set
