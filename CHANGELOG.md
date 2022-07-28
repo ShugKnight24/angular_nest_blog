@@ -2,6 +2,7 @@
 
 Notable changes to this project will be documented in this file
 
+- [X] Updated Documentation - 7/28/22
 - [X] Add Cypress to project - 7/27/22
 - [X] Fix searching by username - 7/26/22
 - [X] Add ability to search by username on the users endpoint - 7/25/22
