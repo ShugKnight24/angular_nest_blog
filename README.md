@@ -10,8 +10,7 @@ Add an `.env` file w/ your `DATABASE_URL` string. View `.example.env` as an exam
 Run with `npm run start:dev`
 
 ## To-Dos
-- [ ] Add a section for running cypress
-- [ ] Add a section for running angular
+- [ ] Look into [cypress-axe](https://www.npmjs.com/package/cypress-axe) for accessibility testing
 - [ ] Add reporting with Mocha/Chai
 - [ ] Figure out how to automate Register form w/ Cypress
   - How to create / randomize a username and email
@@ -42,112 +41,18 @@ Run with `npm run start:dev`
 ## Change Log
 - Follow all changes made in the [Changelog](./CHANGELOG.md)
 
+## Running Angular
+`cd` into the `blog` directory, run `npm install` to install the project dependencies, and run the `ng serve` command to start the development server which defaults to port 4200
+
+## Running Cypress
+
+`cd` into the `e2e` directory, run `npm install` to install the project dependencies, and then run either `npx cypress open` or `npm run cypress:open` commands and this will open the Cypress app which will allow you to run e2e tests or unit tests against your components
+
 ## Running Nest Server
 
-cd into the `api/src` directory and run the `npm run start:dev` command this will start the nest API on port 3000
+`cd` into the `api` directory, run `npm install` to install the project dependencies, and then run the `npm run start:dev` command this will start the nest API on port 3000
 
 You can use Postman or a similar app to test the endpoint by using different methods
 
-## Users Endpoint
-
-  Postman collection added in the `postman` directory
-
-  Base URL: `localhost:3000/users/`
-  ### Create
-  Post request - Pass a name and username as raw body via JSON
-
-  Target: Base URL
-  Method: POST
-  Example request body:
-  ``` json
-  {
-    "name": "Shugmi Test",
-    "username": "shugknight24",
-    "email": "test@test.com",
-    "password": "testPass123!",
-    "role": "will not work - defaults to user"
-  }
-  ```
-
-  ### Read
-  Get Request - Pass no params to get all the users, pass the specific user id to return a single user
-
-  #### Get All Users
-  Target: Base URL
-  Required role: 'admin'
-  Method: GET
-
-  Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
-
-  Example request body: none or can pass in pagination params to get a specific page of users. The limit can be set in the `.env` file. Look at `example.env` under the `USER_PAGINATION_LIMIT` string. This will also return a links object that has urls to `first`, `previous`, `next`, and `last` pages
-
-  ``` json
-  {
-    "page": 1,
-    "limit": 10,
-    "route": "http://localhost:3000/users"
-  }
-  ```
-
-  #### Get One User
-  Target: Base URL/:id
-  Method: GET
-  Example request body
-  ``` json
-  {
-    "id": "1"
-  }
-  ```
-
-  ### Update
-  Put Request - Pass in user id and then pass in the updated user object. The email and password fields will not be updated due to the fact they are deleted in the `updateOne` method inside of the user service
-
-  Target: Base URL/:id
-  Method: PUT
-  Example request body
-  ``` json
-  {
-    "name": "Shugmi Test Updated",
-    "username": "shugknight",
-    "email": "will not work",
-    "password": "will not work",
-    "role": "will not work"
-  }
-  ```
-
-  ### Update User Role
-  Target: Base URL/:id/role
-  Required role: 'admin'
-  Method: PUT
-  Authorization: Bearer Token -> Pass in the `JWT Token` reponse received from the `/login` endpoint as a bearer token. This will ensure the user has the correct role to access this endpoint 
-
-  Example request body
-  ``` json
-  {
-    "role": "admin" | "editor" | "publisher" | "user" (default)
-  }
-  ```
-  ### Delete
-  Delete Request - Pass a specific user's ID to delete a user
-
-  Target: Base URL/:id
-  Method: DELETE
-  Example request body
-  ``` json
-  {
-    "id": "1"
-  }
-  ```
-
-  ### Login
-  Post Request - Pass a username and password as raw body via JSON to get a JWT token back. Can check the contents of that token at [jwt.io](https://jwt.io/)
-
-  Target: Base URL/login
-  Method: POST
-  Example request body
-  ``` json
-  {
-    "email": "user email",
-    "password": "user password",
-  }
-  ```
+## API Endpoint Documentation
+- See thorough documenation of endpoints in the [API Docs](./API_DOCS.md) and find the accompanying Postman Collections in the [Postman directory](./postman).
